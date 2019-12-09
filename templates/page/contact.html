@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="fh5co-contact" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>Contact Information</h3>
+                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                </div>
+            </div>
+            
+            <form action="{% url 'replay' %}">
+                <div class="row animate-box">
+                    <div class="col-md-6">
+                        <h3 class="section-title">Our Address</h3>
+                        <ul class="contact-info">
+                            <li><i class="icon-location-pin"></i>109 /, Raheja Chambers, Free Press Journal Marg, Nariman Point</li>
+                            <li><i class="icon-phone2"></i>02266365251</li>
+                            <li><i class="icon-mail"></i><a href="#">contact@thetravela.com</a></li>
+                            <li><i class="icon-globe2"></i><a href="#">www.thetravela.com</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.username }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.email }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <textarea name="" class="form-control" id="" cols="30" rows="7" placeholder="Message"></textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Send Message" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        
+        </div>
+    </div>
+    
+{% endblock %}

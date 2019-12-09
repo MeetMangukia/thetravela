@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hotel List -->
+<div id="fh5co-tours" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 animate-box">
+                    <h2 class="heading-title" style="margin-bottom: 3px;">{{ hotel.name }}</h2>
+                    <p>{{ hotel.address }}, {{ hotel.city }}, {{ hotel.state }}</p>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <h2 class="heading-title" style="margin-bottom: 3px;">&#8377; {{ hotel.price }}</h2>
+                    <p>per night</p>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <h3 style="margin-bottom: 3px;">Description</h3>
+                    <p>{{ hotel.description }}</p>
+                    <h3 style="margin-bottom: 3px;">Services</h3>
+                    <p style="margin-bottom: 3px;"><b>AC :</b> {% if hotel.ac == True %}Yes{% else %}No{% endif %}</p>
+                    <p style="margin-bottom: 3px;"><b>T.V. :</b> {% if hotel.tv == True %}Yes{% else %}No{% endif %}</p>
+                    <p style="margin-bottom: 3px;"><b>WIFI :</b> {% if hotel.wifi == True %}Yes{% else %}No{% endif %}</p>
+                    <p style="margin-bottom: 3px;"><b>KITCHEN :</b> {% if hotel.kitchen == True %}Yes{% else %}No{% endif %}</p>
+                    <p style="margin-bottom: 3px;"><b>MINI FRIDGE :</b> {% if hotel.mini_fridge == True %}Yes{% else %}No{% endif %}</p>
+                    <p style="margin-bottom: 3px;"><b>CCTV :</b> {% if hotel.cctv == True %}Yes{% else %}No{% endif %}</p>
+                    <p><b>PARKING :</b> {% if hotel.parking == True %}Yes{% else %}No{% endif %}</p>
+                    <a href="{% url 'inquery_hotel' hotel.id %}">Book Now <i class="icon-arrow-right22"></i></a>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <img class="img-responsive" src="{{ hotel.photo_main.url }}" alt="travel">
+                </div>
+                
+                {% if hotel.photo_1 or hotel.photo_2 or hotel.photo_3 %}
+                <div class="col-md-12 animate-box">
+                    <br><br>
+                    <h4 class="heading-title">More Images</h2>
+                </div>
+                {% endif %}
+                <div class="row row-bottom-padded-md">
+                    <!-- More Images -->
+                    {% if hotel.photo_1 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ hotel.photo_1.url }}" alt="Hotel Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    
+                    {% if hotel.photo_2 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ hotel.photo_2.url }}" alt="Hotel Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+
+                    {% if hotel.photo_3 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ hotel.photo_3.url }}" alt="Hotel Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Hotel List -->
+
+{% endblock %}

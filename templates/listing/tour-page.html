@@ -1,0 +1,120 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hotel List -->
+<div id="fh5co-tours" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 animate-box">
+                    <h2 class="heading-title" style="margin-bottom: 3px;">{{ tour.name }}</h2>
+                    <p>{{ tour.city }}, {{ tour.state }}, {{ tour.country }}</p>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <h2 class="heading-title" style="margin-bottom: 3px;">&#8377; {{ tour.price }}</h2>
+                    <p>{{ tour.days }} Days, {{ tour.night }} Night</p>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <h3 style="margin-bottom: 3px;">Description</h3>
+                    <p>{{ tour.description }}</p>
+                    
+                    <h3 style="margin-bottom: 3px;">Place to visit</h3>
+                    {% if tour.place_1_heading or tour.place_1 %}
+                    <p style="margin-bottom: 3px;">
+                        <b>{% if tour.place_1_heading %}{{ tour.place_1_heading }}{% endif %} : </b>
+                        {% if tour.place_1 %}{{ tour.place_1 }}{% endif %}
+                    </p>
+                    {% endif %}
+                    {% if tour.place_2_heading or tour.place_2 %}
+                    <p style="margin-bottom: 3px;">
+                        <b>{% if tour.place_2_heading %}{{ tour.place_2_heading }}{% endif %} : </b>
+                        {% if tour.place_2 %}{{ tour.place_2 }}{% endif %}
+                    </p>
+                    {% endif %}
+                    {% if tour.place_3_heading or tour.place_3 %}
+                    <p>
+                        <b>{% if tour.place_3_heading %}{{ tour.place_3_heading }}{% endif %} : </b>
+                        {% if tour.place_3 %}{{ tour.place_3 }}{% endif %}
+                    </p>
+                    {% endif %}
+                    <a href="{% url 'inquery_tour' tour.id %}">Book Now <i class="icon-arrow-right22"></i></a>
+                </div>
+                <div class="col-md-6 animate-box">
+                    <img class="img-responsive" src="{{ tour.photo_main.url }}" alt="travel">
+                </div>
+                {% if tour.photo_1 %}
+                <div class="col-md-12 animate-box">
+                    <br><br>
+                    <h4 class="heading-title">More Photos</h2>
+                </div>
+                {% endif%}
+                <div class="row row-bottom-padded-md">
+                    <!-- More Images -->
+                    {% if tour.photo_1 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_1.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_2 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_2.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_3 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_3.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_4 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_4.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_5 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_5.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_6 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_6.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_7 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_7.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_8 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_8.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_9 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_9.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_10 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_10.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_11 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_11.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    {% if tour.photo_12 %}
+                        <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                            <img src="{{ tour.photo_12.url }}" alt="Tour Image" class="img-responsive">
+                        </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Hotel List -->
+    
+{% endblock %}

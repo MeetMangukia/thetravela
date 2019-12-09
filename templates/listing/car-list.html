@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="fh5co-car" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>Our Car Rent Service</h3>
+                </div>
+            </div>
+            <div class="row row-bottom-padded-md">
+                {% for car in cars %}
+                <div class="col-md-6 animate-box">
+                    <div class="car">
+                        <div class="one-4">
+                            <h3>{{ car.name }}</h3>
+                            <span class="price">{{ car.members }} <small>Members</small></span>
+                            <span class="price">{{ car.bags }} <small>Bags</small></span>
+                            <span class="price">{{ car.doors }} <small>Doors</small></span>
+                            <span class="price">&#8377;{{ car.price }} <small>/ kilometer</small></span>
+                            <a class="btn" style="background: white; margin-top: 10px;" href="{% url 'inquery_car' car.id %}">Book Now<i class="icon-arrow-right22"></i></a>
+                        </div>
+                            <div class="one-1"><img src="{{ car.photo_main.url }}" alt="hotel list" class="img-responsive">
+                        </div>
+                        
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+{% endblock %}

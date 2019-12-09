@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="fh5co-contact" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>Booking Request</h3>
+                </div>
+            </div>
+            <form id="book_hotel" action="{% url 'payment' hotel.price %}">
+            {% csrf_token %}
+                <div class="row animate-box">
+                    <div class="col-md-6">
+                        <h3 class="section-title">{{ hotel.name }}</h3>
+                        <p><b>&#8377;{{ hotel.price }}</b> / night</p>
+                        <ul class="contact-info">
+                            <li><i class="icon-location-pin"></i>{{ hotel.address }}</li>
+                            <li><i class="icon-phone2"></i>+91 {{ hotel.phone }}</li>
+                            <li><i class="icon-mail"></i> {{ hotel.email }}</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.username }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.email }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.userprofile.phone }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Phone">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-field">
+                                        <label for="date-start">Check in:</label>
+                                        <input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-field">
+                                        <label for="date-start">Check out:</label>
+                                        <input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <section>
+                                        <label for="class">Rooms:</label>
+                                        <select class="form-control" id="room" name="room" onchange="calculate()">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </section>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <section>
+                                        <label for="class">Nights:</label>
+                                        <select class="form-control" id="night" name="room" onchange="calculate()">
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </section>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <section>
+                                        <label for="class">Adult:</label>
+                                        <select class="form-control">
+                                            <option value="" disabled selected>1</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </section>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <section>
+                                        <label for="class">Children:</label>
+                                        <select class="form-control">
+                                            <option value="" disabled selected>1</option>
+                                            <option value="1">1</option>
+                                            <option value="2">2</option>
+                                            <option value="3">3</option>
+                                            <option value="4">4</option>
+                                            <option value="5">5</option>
+                                        </select>
+                                    </section>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button type="submit" id="payment_button" class="btn btn-primary">Pay &#8377;{{ hotel.price }}</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+<script>
+    function calculate() {
+        room = document.getElementById('room').value
+        night = document.getElementById('night').value
+        var hotel_price = "{{ hotel.price }}"
+        var total_price = hotel_price*room*night
+        document.getElementById('payment_button').innerHTML='Pay &#8377;'+total_price;
+    }
+</script>
+
+{% endblock %}

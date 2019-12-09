@@ -1,0 +1,74 @@
+<div id="fh5co-wrapper">
+<div id="fh5co-page">
+
+<header id="fh5co-header-section" class="sticky-banner">
+    <div class="container">
+        <div class="nav-header">
+            <a href="#" class="js-fh5co-nav-toggle fh5co-nav-toggle dark"><i></i></a>
+            <h1 id="fh5co-logo"><a href="{% url 'index' %}"><i class="icon-airplane"></i>Travela</a></h1>
+            <!-- START #fh5co-menu-wrap -->
+            <nav id="fh5co-menu-wrap" role="navigation">
+                <ul class="sf-menu" id="fh5co-primary-menu">
+                    
+                    <li {% if '/' == request.path %}
+                        class="active"
+                        {% endif %}>
+                        <a href="{% url 'index' %}">Home</a>
+                    </li>
+                    
+                    <li
+                        {% if 'tour' in request.path %}
+                        class="active"
+                        {% endif %}>
+                        <a href="{% url 'tour_list' %}">Tour</a>
+                    </li>
+                    
+                    <li {% if 'hotel' in request.path %}
+                        class="active"
+                        {% endif %}>
+                    <a href="{% url 'hotel_list' %}">Hotel</a>
+                    </li>
+                    
+                    <li {% if 'car' in request.path %}
+                        class="active"
+                        {% endif %}>
+                        <a href="{% url 'car_list' %}">Car</a>
+                    </li>
+                    
+                    <li {% if 'contact' in request.path %}
+                        class="active"
+                        {% endif %}>
+                        <a href="{% url 'contact' %}">Contact</a>
+                    </li>
+                    
+                    {% if user.is_authenticated %}
+                        <li {% if 'edit-profile' in request.path %}
+                            class="active"
+                            {% endif %}>
+                        <a href="{% url 'edit_profile' %}">Account</a>
+                        </li>
+                        <li {% if 'logout' in request.path %}
+                            class="active"
+                            {% endif %}>
+                        <a href="{% url 'logout' %}">Logout</a>
+                        </li>
+                    {% else %}
+                        <li {% if 'signin' in request.path %}
+                            class="active"
+                            {% endif %}>
+                        <a href="{% url 'signin' %}">Signin</a>
+                        </li>
+                        
+                        <li {% if 'signup' in request.path %}
+                            class="active"
+                            {% endif %}>
+                            <a href="{% url 'signup' %}">Signup</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<!-- end:header-top -->

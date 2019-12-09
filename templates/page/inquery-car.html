@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="fh5co-contact" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>Booikng Car</h3>
+                </div>
+            </div>
+            <form action="{% url 'payment' 1 %}">
+                <div class="row animate-box">
+                    <div class="col-md-6">
+                        <h3 class="section-title">{{ car.name }}</h3>
+                        <ul class="contact-info">
+                            <li style="padding-left: 0px;"><b>Members : </b>{{ car.members }}</li>
+                            <li style="padding-left: 0px;"><b>Bags : </b>{{ car.bags }}</li>
+                            <li style="padding-left: 0px;"><b>Doors : </b>{{ car.doors }}</a></li>
+                            <li style="padding-left: 0px;"><b>Price : </b>{{ car.price }} / Km</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.username }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Name">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.email }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Email">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.userprofile.phone }}"
+                                    {% endif %}
+                                    class="form-control" placeholder="Phone">
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-field">
+                                        <label for="date-start">From:</label>
+                                        <input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <div class="input-field">
+                                        <label for="date-start">To:</label>
+                                        <input type="text" class="form-control" id="date-start" placeholder="mm/dd/yyyy"/>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <button type="submit" id="payment_button" class="btn btn-primary">Pay Advance &#8377;5000</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+{% endblock %}

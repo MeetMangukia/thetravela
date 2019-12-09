@@ -1,0 +1,90 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div id="fh5co-contact" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>Account Detail</h3>
+                </div>
+            </div>
+            <form action="{% url 'edit_profile' %}" method="POST">
+                {% csrf_token %}
+                <div class="row animate-box">
+                    <div class="col-md-3"></div>
+                    <div class="col-md-6">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.username }}"
+                                    {% endif %}
+                                    class="form-control" name="username" placeholder="First Name + Last Name">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.email }}"
+                                    {% endif %}
+                                    class="form-control" name="email" placeholder="Email">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="text"
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.userprofile.phone }}"
+                                    {% endif %}
+                                    class="form-control" name="phone" placeholder="Phone">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    {% if user.is_authenticated %}
+                                        <input name="gender" type="radio" value="male"
+                                        {% if user.userprofile.gender == "male" %}
+                                        checked
+                                        {% endif %}>
+                                        <b>Male</b>&ensp;&ensp;&ensp;
+                                        
+                                        <input name="gender" type="radio" value="female"
+                                        {% if user.userprofile.gender == "female" %}
+                                        checked
+                                        {% endif %}>
+                                        <b>Female</b>&ensp;&ensp;&ensp;
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    DOB
+                                    <input type="text" 
+                                    {% if user.is_authenticated %}
+                                        value="{{ user.userprofile.dob }}"
+                                    {% endif %}
+                                    name="dob" class="form-control" placeholder="dd/mm/yyyy">
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    Address
+                                    <textarea class="form-control" name="address">{% if user.is_authenticated %}{{ user.userprofile.address }}{% endif %}</textarea>
+                                </div>
+                            </div>
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-primary">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

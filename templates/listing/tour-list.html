@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- Hotel List -->
+<div id="fh5co-tours" class="fh5co-section-gray">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                    <h3>Our Tour Packages</h3>
+                </div>
+            </div>
+            <div class="row row-bottom-padded-md">
+                {% for tour in tours %}
+                <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                    <div href="#"><img src="{{ tour.photo_main.url }}" alt="Tour" class="img-responsive">
+                        <div class="desc">
+                            <span></span>
+                            <h3>{{ tour.name }}</h3>
+                            <span><b>{{ tour.days }} Days, {{ tour.night }} Nights</b></span>
+                            <span class="price">&#8377;{{ tour.price }}</span>
+                            <a class="btn btn-primary btn-outline" href="{% url 'tour_page' tour.id %}">Book Now <i class="icon-arrow-right22"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+                
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
